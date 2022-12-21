@@ -1,0 +1,2 @@
+flagUp = False
+empty = True
