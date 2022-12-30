@@ -1,7 +1,11 @@
 import Bob
 import Alice
+import Charli
 import Letter
 import Letterbox
+import PostOffice
+import Postman
+
 
 class Person:
 
@@ -13,14 +17,60 @@ class Person:
             print('Alice is writing a letter to Bob')
 
         elif self.name == Bob.name:
-            print('Bob is wrting a letter to Alice')
+            print('Bob is writing a letter to Alice')
 
         else:
             print('ERROR')
 
-    def deliver_Letter(self):
+    def encrypted(self):
         if self.name == Alice.name:
-            print('Alice has delivered a letter to Bob')
+            print('Alice has encrypted the letter')
+        elif self.name == Bob.name:
+            print('Bob has encrypted the letter')
+        else:
+            print('ERROR')
+
+    def decrypted(self):
+        if self.name == Alice.name:
+            print('Bob has decrypted the letter')
+        elif self.name == Bob.name:
+            print('Alice has decrypted the letter')
+        else:
+            print('ERROR')
+
+    def deliver_Letter_To_PostOffice(self):
+        if self.name == Alice.name:
+            PostOffice.delivered = True
+            if PostOffice.delivered == True:
+                print('Alice has delivered a letter to the Post Office')
+            else:
+                print("Alice has not delivered her letter to the Post Office")
+
+        elif self.name == Bob.name:
+            PostOffice.delivered = True
+            if PostOffice.delivered == True:
+                print('Bob has dilivered a letter to the Post Office')
+            else:
+                print("Alice has not delivered her letter to the Post Office")
+
+    def postman_Gets_Letter(self):
+        if self.name == Alice.name:
+            Postman.picksUpLetter = True
+            if Postman.picksUpLetter == True:
+                print(f'{Charli.name}, the Postman, has picked up the letter from the Post Office')
+            else:
+                print(f'{Charli.name}, the Postman, has NOT picked up the letter from the Post Office')
+
+        elif self.name == Bob.name:
+            Postman.picksUpLetter = True
+            if Postman.picksUpLetter == True:
+                print(f'{Charli.name}, the Postman, has picked up the letter from the Post Office')
+            else:
+                print(f'{Charli.name}, the Postman, has NOT picked up the letter from the Post Office')
+
+    def postman_delivers_letter(self):
+        if self.name == Alice.name:
+            print(f'{Charli.name} has delivered the letter')
             Letterbox.empty = False
             if Letterbox.empty == False:
                 Letterbox.flagUp = True
@@ -29,13 +79,14 @@ class Person:
                 print(f'Flag Status (Has Letter?): {Letterbox.flagUp}, Bob has no new message')
 
         elif self.name == Bob.name:
-            print('Bob has dilivered a letter to Alice')
+            print(f'{Charli.name} has delivered the letter')
             Letterbox.empty = False
             if Letterbox.empty == False:
                 Letterbox.flagUp = True
                 print(f'Flag Status (Has Letter?): {Letterbox.flagUp}, Alice has a new letter!')
             else:
                 print(f'Flag Status (Has Letter?): {Letterbox.flagUp}, Alice has no new message')
+
         else:
             print('ERROR')
 
@@ -57,7 +108,11 @@ else:
 
 person1 = Person(letterWritter)
 person1.write_Letter()
-person1.deliver_Letter()
+person1.encrypted()
+person1.deliver_Letter_To_PostOffice()
+person1.postman_Gets_Letter()
+person1.postman_delivers_letter()
+person1.decrypted()
 person1.read_letter()
 
 
